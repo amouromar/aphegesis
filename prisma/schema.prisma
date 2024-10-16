@@ -1,0 +1,17 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AudioPost {
+  id        String   @id @default(cuid())
+  shortId   String   @unique
+  audioUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
