@@ -18,7 +18,7 @@ export async function getServerSideProps(context: { params: { id: string } }) {
   return { props: { audioUrl: audioPost.audioUrl } };
 }
 
-export default function AudioPost({ audioUrl }: { audioUrl: string }) {
+export default function AudioPost() {
   const router = useRouter();
   const { id } = router.query;
   const [audioUrlState, setAudioUrlState] = useState<string | null>(null);
@@ -26,7 +26,7 @@ export default function AudioPost({ audioUrl }: { audioUrl: string }) {
   useEffect(() => {
     async function fetchAudioUrl() {
       if (typeof id === "string") {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from("audio_links")
           .select("audio_url")
           .eq("short_id", id)
