@@ -49,7 +49,7 @@ const AudioRecorder: React.FC = () => {
     const fileName = `audio_${Date.now()}.webm`;
 
     try {
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from("audio-uploads")
         .upload(fileName, audioBlob, {
           contentType: "audio/webm",
